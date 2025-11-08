@@ -1,0 +1,24 @@
+data:
+  num_workers: 4
+  test_csv: data/splits/test.csv
+  train_csv: data/splits/train.csv
+  val_csv: data/splits/val.csv
+log:
+  out_dir: outputs
+loss:
+  pos_weight: 1.0
+model:
+  drop_rate: 0.2
+  name: efficientnet_b0
+  pretrained: true
+resume: outputs/checkpoints/efnb0_last.pth
+seed: 42
+start_epoch: 15
+train:
+  batch_size: 16         # keep it modest on MPS; raise later if stable
+  epochs: 22          # total epochs target (will continue from 8)
+  lr: 0.00001
+  scheduler: cosine
+  use_amp: true          # AMP only activates on CUDA; on MPS it’s ignored in your code
+  warmup_epochs: 0
+  weight_decay: 0.0001
